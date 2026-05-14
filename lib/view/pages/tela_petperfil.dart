@@ -1,10 +1,10 @@
-import 'package:adota_pets_mobile/models/pet_model.dart';
+import 'package:adota_pets_mobile/view/modelo/modelo_pet.dart';
 import 'package:adota_pets_mobile/view/widgets/botao_adotar.dart';
-import 'package:adota_pets_mobile/view/widgets/pet_atributos_row.dart';
+import 'package:adota_pets_mobile/view/widgets/pet_atributos.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_imagem_principal.dart';
-import 'package:adota_pets_mobile/view/widgets/pet_publicado_por_card.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_saude_card.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_sobre_card.dart';
+import 'package:adota_pets_mobile/view/widgets/publicado_por.dart';
 import 'package:flutter/material.dart';
 
 class TelaPerfil extends StatefulWidget {
@@ -34,8 +34,11 @@ class _TelaPerfilState extends State<TelaPerfil> {
                     onTap: () => Navigator.pop(context),
                     child: const Row(
                       children: [
-                        Icon(Icons.arrow_back_ios_new,
-                            size: 16, color: Color(0xFF1A1A1A)),
+                        Icon(
+                          Icons.arrow_back_ios_new,
+                          size: 16,
+                          color: Color(0xFF1A1A1A),
+                        ),
                         SizedBox(width: 4),
                         Text(
                           'Voltar',
@@ -125,11 +128,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
 
                     const SizedBox(height: 24),
                     // Botão de adotar
-                    BotaoAdotar(
-                      petName: widget.pet.nome,
-                      onPressed: () {
-                      },
-                    ),
+                    BotaoAdotar(petName: widget.pet.nome, onPressed: () {}),
 
                     const SizedBox(height: 32),
                   ],
