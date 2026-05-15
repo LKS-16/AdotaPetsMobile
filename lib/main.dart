@@ -1,4 +1,5 @@
 import 'package:adota_pets_mobile/view/pages/feed.dart';
+import 'package:adota_pets_mobile/view/pages/tela_login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: Feed(),
+      home: TelaLogin(),
     );
   }
 }
