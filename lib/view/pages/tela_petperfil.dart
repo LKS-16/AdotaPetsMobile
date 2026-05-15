@@ -6,6 +6,7 @@ import 'package:adota_pets_mobile/view/widgets/pet_publicado_por_card.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_saude_card.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_sobre_card.dart';
 import 'package:flutter/material.dart';
+import 'package:adota_pets_mobile/view/tela_chat.dart';
 
 class TelaPerfil extends StatefulWidget {
   final PetModel pet;
@@ -128,6 +129,12 @@ class _TelaPerfilState extends State<TelaPerfil> {
                     BotaoAdotar(
                       petName: widget.pet.nome,
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => TelaChat(pet: widget.pet),
+                          ),
+                        );
                       },
                     ),
 
