@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Tab extends StatelessWidget {
+class Aba extends StatelessWidget {
   final String label;
   final bool isActive;
   final VoidCallback onTap;
 
-  const Tab({required this.label, required this.isActive, required this.onTap});
+  const Aba({required this.label, required this.isActive, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

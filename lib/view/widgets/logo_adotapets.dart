@@ -20,7 +20,7 @@ class LogoAdotapets extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         const Text(
-          'PawFinder',
+          'AdotaPets',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,
