@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:adota_pets_mobile/models/modelo_mensagem.dart';
-import 'package:adota_pets_mobile/models/pet_model.dart';
+import 'package:adota_pets_mobile/view/modelo/modelo_mensagem.dart';
+import 'package:adota_pets_mobile/view/modelo/modelo_pet.dart';
 import 'package:adota_pets_mobile/view/widgets/bolha_mensagem.dart';
-import 'package:adota_pets_mobile/view/widgets/chat_cabecalho.dart';
+import 'package:adota_pets_mobile/view/widgets/chat_cabe%C3%A7alho.dart';
 import 'package:adota_pets_mobile/view/widgets/chat_input.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
 
 class TelaChat extends StatefulWidget {
   final PetModel pet;

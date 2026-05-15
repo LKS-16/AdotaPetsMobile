@@ -1,4 +1,4 @@
-import 'package:adota_pets_mobile/models/modelo_mensagem.dart';
+import 'package:adota_pets_mobile/view/modelo/modelo_mensagem.dart';
 import 'package:flutter/material.dart';
 
 class BolhaMensagem extends StatelessWidget {
