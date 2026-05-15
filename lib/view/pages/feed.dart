@@ -48,7 +48,7 @@ class Feed extends StatelessWidget {
       appBar: AppBar(
         //leading: const Icon(Icons.menu),
         title: const Text(
-          "PawFinder",
+          "AdotaPets",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         elevation: 0,

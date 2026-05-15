@@ -1,3 +1,4 @@
+import 'package:adota_pets_mobile/view/pages/favoritos.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -26,7 +27,7 @@ class AppDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "PawFinder",
+                      "AdotaPets",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
 
           _buildDrawerItem(Icons.home_outlined, "Feed", isSelected: true),
-          _buildDrawerItem(Icons.favorite_border, "Favoritos"),
+          _buildDrawerItem(Icons.favorite_border, "Favoritos", onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const Favoritos()))),
           _buildDrawerItem(Icons.chat_bubble_outline, "Conversas"),
           _buildDrawerItem(Icons.person_outline, "Perfil"),
           _buildDrawerItem(Icons.settings_outlined, "Configurações"),
@@ -69,6 +70,8 @@ class AppDrawer extends StatelessWidget {
     IconData icon,
     String title, {
     bool isSelected = false,
+    VoidCallback? onTap,
+
   }) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -77,6 +80,7 @@ class AppDrawer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListTile(
+        onTap: onTap,
         leading: Icon(
           icon,
           color: isSelected ? const Color(0xFFF37321) : Colors.grey[700],
