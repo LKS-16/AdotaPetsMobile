@@ -1,4 +1,5 @@
-import 'package:adota_pets_mobile/view/widgets/auth_tab_bar.dart';
+import 'package:adota_pets_mobile/view/pages/tela_cadastro.dart';
+import 'package:adota_pets_mobile/view/widgets/abas_auth.dart';
 import 'package:adota_pets_mobile/view/widgets/botao_login.dart';
 import 'package:adota_pets_mobile/view/widgets/campo_texto.dart';
 import 'package:adota_pets_mobile/view/widgets/logo_adotapets.dart';
@@ -34,17 +35,19 @@ class TelaLogin extends StatelessWidget{
                 ),
 
                 const SizedBox(height: 26,),
-                AuthTabBar(
+                AbasAuth(
                   isLogin: true,
-                  // onRegisterTap: () => print("foi."),
-
+                  onRegisterTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const TelaCadastro()),
+                  ),
                 ),
                 const SizedBox(height: 24),
                 const CampoTexto(hint: "Seu e-mail", keyboardType: TextInputType.emailAddress),
                 const SizedBox(height: 14),
                 const CampoTexto(hint: "Sua senha", obscureText: true),
                 const SizedBox(height: 24),
-                BotaoLogin(label: "Entrar", onPressed: (){}),
+                BotaoLogin(label: "Entrar", onPressed: (){print("pressionou essa porra");}),
                 const SizedBox(height: 20),
                 Center(
                   child: Row(
@@ -54,7 +57,10 @@ class TelaLogin extends StatelessWidget{
                       ),
 
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const TelaCadastro()),
+                        ),
                         child: Text(
                           "Cadastre-se",
                           style: TextStyle(
