@@ -1,17 +1,15 @@
 import 'package:adota_pets_mobile/view/pages/feed.dart';
-import 'package:adota_pets_mobile/view/pages/tela_login.dart';
 import 'package:adota_pets_mobile/view/widgets/abas_auth.dart';
 import 'package:adota_pets_mobile/view/widgets/botao_login.dart';
 import 'package:adota_pets_mobile/view/widgets/campo_texto.dart';
 import 'package:adota_pets_mobile/view/widgets/logo_adotapets.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TelaCadastro extends StatelessWidget{
+class TelaCadastro extends StatelessWidget {
   const TelaCadastro({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -21,7 +19,8 @@ class TelaCadastro extends StatelessWidget{
             children: [
               const LogoAdotapets(),
               const SizedBox(height: 32),
-              const Text("Crie sua conta!",
+              const Text(
+                "Crie sua conta!",
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
@@ -31,11 +30,7 @@ class TelaCadastro extends StatelessWidget{
               const SizedBox(height: 32),
               const Text(
                 "Cadastre-se e encontre o seu novo pet!",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF888888),
-                ),
-
+                style: TextStyle(fontSize: 14, color: Color(0xFF888888)),
               ),
               const SizedBox(height: 28),
               AbasAuth(
@@ -45,11 +40,20 @@ class TelaCadastro extends StatelessWidget{
               const SizedBox(height: 24),
               const CampoTexto(hint: "Seu nome completo"),
               const SizedBox(height: 14),
-              const CampoTexto(hint: "Seu e-mail", keyboardType: TextInputType.emailAddress),
+              const CampoTexto(
+                hint: "Seu e-mail",
+                keyboardType: TextInputType.emailAddress,
+              ),
               const SizedBox(height: 14),
               const CampoTexto(hint: "Sua senha", obscureText: true),
               const SizedBox(height: 24),
-              BotaoLogin(label: "Criar conta", onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => Feed()))),
+              BotaoLogin(
+                label: "Criar conta",
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => Feed()),
+                ),
+              ),
               const SizedBox(height: 20),
               Center(
                 child: Row(
@@ -69,7 +73,7 @@ class TelaCadastro extends StatelessWidget{
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

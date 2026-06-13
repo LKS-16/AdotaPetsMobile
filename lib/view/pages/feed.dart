@@ -1,5 +1,4 @@
 import 'package:adota_pets_mobile/view/modelo/pet.dart';
-import 'package:adota_pets_mobile/view/widgets/app_drawer.dart';
 import 'package:adota_pets_mobile/view/widgets/filtros.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_card.dart';
 import 'package:flutter/material.dart';
@@ -42,71 +41,56 @@ class Feed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const AppDrawer(),
-
-      appBar: AppBar(
-        //leading: const Icon(Icons.menu),
-        title: const Text(
-          "PawFinder",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text: const TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Encontre Seu Novo ",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          RichText(
+            text: const TextSpan(
+              children: [
+                TextSpan(
+                  text: "Encontre Seu Novo ",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
                   ),
-                  TextSpan(
-                    text: "Melhor Amigo",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFD35400),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 8),
-            const Text(
-              "Conheça pets adoráveis que buscam um lar para sempre",
-              style: TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-
-            const SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Buscar...",
-                prefixIcon: const Icon(Icons.search),
-                filled: true,
-                fillColor: Colors.grey[100],
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide.none,
                 ),
+                TextSpan(
+                  text: "Melhor Amigo",
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFD35400),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            "Conheça pets adoráveis que buscam um lar para sempre",
+            style: TextStyle(fontSize: 14, color: Colors.grey),
+          ),
+          const SizedBox(height: 20),
+          TextField(
+            decoration: InputDecoration(
+              hintText: "Buscar...",
+              prefixIcon: const Icon(Icons.search),
+              filled: true,
+              fillColor: Colors.grey[100],
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide.none,
               ),
             ),
-            const SizedBox(height: 25),
-            const FiltroAnimais(),
-            const SizedBox(height: 25),
-            ...pets.map((p) => PetCard(pet: p)),
-          ],
-        ),
+          ),
+          const SizedBox(height: 25),
+          const FiltroAnimais(),
+          const SizedBox(height: 25),
+          ...pets.map((p) => PetCard(pet: p)),
+        ],
       ),
     );
   }

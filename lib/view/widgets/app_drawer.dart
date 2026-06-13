@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key});
+  final int selectedIndex;
+  final ValueChanged<int> onItemSelected;
+
+  const AppDrawer({
+    super.key,
+    required this.selectedIndex,
+    required this.onItemSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,7 @@ class AppDrawer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "PawFinder",
+                      "AdotaPets",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -55,21 +62,19 @@ class AppDrawer extends StatelessWidget {
 
           const Divider(),
 
-          _buildDrawerItem(Icons.home_outlined, "Feed", isSelected: true),
-          _buildDrawerItem(Icons.favorite_border, "Favoritos"),
-          _buildDrawerItem(Icons.chat_bubble_outline, "Conversas"),
-          _buildDrawerItem(Icons.person_outline, "Perfil"),
-          _buildDrawerItem(Icons.settings_outlined, "Configurações"),
+          _buildDrawerItem(0, Icons.home_outlined, "Feed"),
+          _buildDrawerItem(1, Icons.favorite_border, "Favoritos"),
+          _buildDrawerItem(2, Icons.chat_bubble_outline, "Conversas"),
+          _buildDrawerItem(3, Icons.person_outline, "Perfil"),
+          _buildDrawerItem(4, Icons.settings_outlined, "Configurações"),
         ],
       ),
     );
   }
 
-  Widget _buildDrawerItem(
-    IconData icon,
-    String title, {
-    bool isSelected = false,
-  }) {
+  Widget _buildDrawerItem(int index, IconData icon, String title) {
+    final bool isSelected = selectedIndex == index;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -79,15 +84,18 @@ class AppDrawer extends StatelessWidget {
       child: ListTile(
         leading: Icon(
           icon,
-          color: isSelected ? const Color(0xFFF37321) : Colors.grey[700],
+          color: isSelected ? Colors.white : Colors.grey[700],
         ),
         title: Text(
           title,
           style: TextStyle(
-            color: isSelected ? const Color(0xFFF37321) : Colors.grey[700],
+            color: isSelected ? Colors.white : Colors.grey[700],
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
         ),
+        onTap: () {
+          onItemSelected(index);
+        },
       ),
     );
   }
