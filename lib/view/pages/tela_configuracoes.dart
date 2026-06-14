@@ -1,6 +1,8 @@
+import 'package:adota_pets_mobile/view/modelo/controller/theme_controller.dart';
 import 'package:adota_pets_mobile/view/widgets/config_item.dart';
 import 'package:adota_pets_mobile/view/widgets/config_secao.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TelaConfiguracoes extends StatefulWidget {
   const TelaConfiguracoes({super.key});
@@ -11,15 +13,17 @@ class TelaConfiguracoes extends StatefulWidget {
 
 class _TelaConfiguracoesState extends State<TelaConfiguracoes> {
   bool _notificacoes = false;
-  bool _modoEscuro = false;
+  //bool _modoEscuro = false;
   bool _localizacao = false;
 
   bool _visibilidadePerfil = false;
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Provider.of<ThemeController>(context);
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F2EE),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -52,13 +56,17 @@ class _TelaConfiguracoesState extends State<TelaConfiguracoes> {
                     valor: _notificacoes,
                     onChanged: (v) => setState(() => _notificacoes = v),
                   ),
+
                   ConfiguracaoItem(
                     icone: Icons.dark_mode_outlined,
                     titulo: 'Modo Escuro',
                     descricao: 'Alternar tema escuro',
-                    valor: _modoEscuro,
-                    onChanged: (v) => setState(() => _modoEscuro = v),
+                    valor: themeController.isDarkMode,
+                    onChanged: (v) {
+                      themeController.alternarTema(v);
+                    },
                   ),
+
                   ConfiguracaoItem(
                     icone: Icons.language_outlined,
                     titulo: 'Localização',

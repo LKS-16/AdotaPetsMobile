@@ -1,8 +1,15 @@
+import 'package:adota_pets_mobile/view/modelo/controller/theme_controller.dart';
 import 'package:adota_pets_mobile/view/pages/navegacao.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeController(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,8 +17,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Provider.of<ThemeController>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'AdotaPets',
+
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -31,8 +42,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      themeMode: ThemeMode.dark,
-      title: 'AdotaPets',
+      themeMode: themeController.currentThemeMode,
       home: Navegacao(),
     );
   }
