@@ -2,6 +2,7 @@ import 'package:adota_pets_mobile/view/pages/feed.dart';
 import 'package:adota_pets_mobile/view/pages/tela_configuracoes.dart';
 import 'package:adota_pets_mobile/view/pages/tela_conversas.dart';
 import 'package:adota_pets_mobile/view/pages/tela_favoritos.dart';
+import 'package:adota_pets_mobile/view/pages/tela_meus_pets.dart';
 import 'package:adota_pets_mobile/view/pages/tela_perfil.dart';
 import 'package:adota_pets_mobile/view/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
@@ -27,14 +28,16 @@ class _NavegacaoState extends State<Navegacao> {
     final List<Widget> _telas = [
       Feed(),
       const TelaFavoritos(),
-      const TelaConversas(),
-      const TelaPerfil(),
+      const TelaMeusPets(pets: []),
+      const TelaConversas(conversas: []),
+      const TelaPerfilPessoa(),
       const TelaConfiguracoes(),
     ];
 
     final List<String> _titulos = [
       "AdotaPets",
       "Favoritos",
+      "Meus Pets",
       "Conversas",
       "Perfil",
       "Configurações",

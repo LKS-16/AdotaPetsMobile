@@ -1,4 +1,5 @@
 import 'package:adota_pets_mobile/view/modelo/modelo_pet.dart';
+import 'package:adota_pets_mobile/view/pages/tela_chat.dart';
 import 'package:adota_pets_mobile/view/widgets/botao_adotar.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_atributos.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_imagem_principal.dart';
@@ -60,7 +61,6 @@ class _TelaPerfilState extends State<TelaPerfil> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Pet com imagem + nome + favorito
                     PetImagemPrincipal(
                       imageUrl: widget.pet.imageUrl,
                       petName: widget.pet.nome,
@@ -73,7 +73,6 @@ class _TelaPerfilState extends State<TelaPerfil> {
 
                     const SizedBox(height: 16),
 
-                    // Atributos: Espécie, Porte, Sexo, Idade
                     PetAtributosRow(
                       especie: widget.pet.especie,
                       porte: widget.pet.porte,
@@ -81,54 +80,48 @@ class _TelaPerfilState extends State<TelaPerfil> {
                       idade: widget.pet.idade,
                     ),
 
-                    const SizedBox(height: 12),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Coluna esquerda
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            children: [
-                              PetSobreCard(
-                                petName: widget.pet.nome,
-                                descricao: widget.pet.descricao,
-                              ),
-                              const SizedBox(height: 12),
-                              PetTemperamentoCard(
-                                temperamentos: widget.pet.temperamentos,
-                              ),
-                            ],
-                          ),
-                        ),
+                    const SizedBox(height: 16),
 
-                        const SizedBox(width: 12),
+                    PetSobreCard(
+                      petName: widget.pet.nome,
+                      descricao: widget.pet.descricao,
+                    ),
 
-                        // Coluna direita
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            children: [
-                              PetSaudeCard(
-                                vacinado: widget.pet.vacinado,
-                                castrado: widget.pet.castrado,
-                                localizacao: widget.pet.localizacao,
-                              ),
-                              const SizedBox(height: 12),
-                              PetPublicadoPorCard(
-                                tipo: widget.pet.publicadoPorTipo,
-                                email: widget.pet.publicadoPorEmail,
-                                avatarUrl: widget.pet.publicadoPorAvatarUrl,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    const SizedBox(height: 16),
+
+                    PetTemperamentoCard(
+                      temperamentos: widget.pet.temperamentos,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    PetSaudeCard(
+                      vacinado: widget.pet.vacinado,
+                      castrado: widget.pet.castrado,
+                      localizacao: widget.pet.localizacao,
+                    ),
+
+                    const SizedBox(height: 16),
+
+                    PetPublicadoPorCard(
+                      tipo: widget.pet.publicadoPorTipo,
+                      email: widget.pet.publicadoPorEmail,
+                      avatarUrl: widget.pet.publicadoPorAvatarUrl,
                     ),
 
                     const SizedBox(height: 24),
-                    // Botão de adotar
-                    BotaoAdotar(petName: widget.pet.nome, onPressed: () {}),
+
+                    BotaoAdotar(
+                      petName: widget.pet.nome,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TelaChat(pet: widget.pet),
+                          ),
+                        );
+                      },
+                    ),
 
                     const SizedBox(height: 32),
                   ],
