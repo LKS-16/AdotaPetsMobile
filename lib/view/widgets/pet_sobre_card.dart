@@ -12,13 +12,15 @@ class PetSobreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cores.surfaceContainer,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: cores.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,10 +29,10 @@ class PetSobreCard extends StatelessWidget {
             children: [
               Text(
                 'Sobre $petName',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A1A),
+                  color: cores.onSurface,
                 ),
               ),
               const SizedBox(width: 6),
@@ -40,9 +42,9 @@ class PetSobreCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             descricao,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 13,
-              color: Color(0xFF555555),
+              color: cores.onSurfaceVariant,
               height: 1.6,
             ),
           ),
@@ -55,30 +57,29 @@ class PetSobreCard extends StatelessWidget {
 class PetTemperamentoCard extends StatelessWidget {
   final List<String> temperamentos;
 
-  const PetTemperamentoCard({
-    super.key,
-    required this.temperamentos,
-  });
+  const PetTemperamentoCard({super.key, required this.temperamentos});
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cores.surfaceContainer,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: cores.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Temperamento',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF1A1A1A),
+              color: cores.onSurface,
             ),
           ),
           const SizedBox(height: 12),
@@ -101,18 +102,20 @@ class _TemperamentoChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final corLaranja = const Color(0xFFD35400);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFF0EB),
+        color: corLaranja.withOpacity(0.15),
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: const Color(0xFFE8622A).withOpacity(0.3)),
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 13,
-          color: Color(0xFFE8622A),
+          color: corLaranja,
           fontWeight: FontWeight.w500,
         ),
       ),

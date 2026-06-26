@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
 
 class PetPublicadoPorCard extends StatelessWidget {
-  final String tipo;
+  final String nome;
   final String email;
   final String? avatarUrl;
 
   const PetPublicadoPorCard({
     super.key,
-    required this.tipo,
+    required this.nome,
     required this.email,
     this.avatarUrl,
   });
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+    final String primeiraLetra = nome.isNotEmpty ? nome[0].toUpperCase() : 'U';
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cores.surfaceContainer,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: cores.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Publicado por',
-            style: TextStyle(
-              fontSize: 13,
-              color: Color(0xFF999999),
-            ),
+            style: TextStyle(fontSize: 13, color: cores.onSurface),
           ),
           const SizedBox(height: 10),
           Row(
@@ -48,9 +48,9 @@ class PetPublicadoPorCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: Image.network(avatarUrl!, fit: BoxFit.cover),
                       )
-                    : const Center(
+                    : Center(
                         child: Text(
-                          'M',
+                          primeiraLetra,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -64,23 +64,27 @@ class PetPublicadoPorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    tipo,
-                    style: const TextStyle(
+                    nome,
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF1A1A1A),
+                      color: cores.onSurface,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Row(
                     children: [
-                      const Icon(Icons.email_outlined, size: 12, color: Color(0xFF999999)),
+                      Icon(
+                        Icons.email_outlined,
+                        size: 12,
+                        color: cores.onSurfaceVariant,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         email,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
-                          color: Color(0xFF999999),
+                          color: cores.onSurfaceVariant,
                         ),
                       ),
                     ],

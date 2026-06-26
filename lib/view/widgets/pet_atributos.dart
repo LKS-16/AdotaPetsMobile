@@ -4,38 +4,33 @@ class PetAtributoCard extends StatelessWidget {
   final String label;
   final String valor;
 
-  const PetAtributoCard({
-    super.key,
-    required this.label,
-    required this.valor,
-  });
+  const PetAtributoCard({super.key, required this.label, required this.valor});
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: cores.surfaceContainer,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFFEEEEEE)),
+          border: Border.all(color: cores.outlineVariant),
         ),
         child: Column(
           children: [
             Text(
               label,
-              style: const TextStyle(
-                fontSize: 11,
-                color: Color(0xFF999999),
-              ),
+              style: TextStyle(fontSize: 11, color: cores.onSurfaceVariant),
             ),
             const SizedBox(height: 4),
             Text(
               valor,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF1A1A1A),
+                color: cores.onSurface,
               ),
             ),
           ],

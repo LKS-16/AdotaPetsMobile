@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class PetImagemPrincipal extends StatelessWidget {
   final String imageUrl;
   final String petName;
-  final String petSubtitle; 
+  final String petSubtitle;
   final bool isFavorited;
   final VoidCallback? onFavoriteTap;
 
-  const PetImagemPrincipal({   
+  const PetImagemPrincipal({
     super.key,
     required this.imageUrl,
     required this.petName,
@@ -18,6 +18,8 @@ class PetImagemPrincipal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Stack(
@@ -30,7 +32,11 @@ class PetImagemPrincipal extends StatelessWidget {
               fit: BoxFit.cover,
               errorBuilder: (_, __, ___) => Container(
                 color: const Color(0xFFEEEEEE),
-                child: const Icon(Icons.pets, size: 64, color: Color(0xFFBBBBBB)),
+                child: const Icon(
+                  Icons.pets,
+                  size: 64,
+                  color: Color(0xFFBBBBBB),
+                ),
               ),
             ),
           ),
@@ -46,10 +52,7 @@ class PetImagemPrincipal extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: [
-                    Color(0xCC000000),
-                    Colors.transparent,
-                  ],
+                  colors: [Color(0xCC000000), Colors.transparent],
                 ),
               ),
             ),
@@ -73,10 +76,7 @@ class PetImagemPrincipal extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   petSubtitle,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: Colors.white70,
-                  ),
+                  style: const TextStyle(fontSize: 13, color: Colors.white70),
                 ),
               ],
             ),
@@ -91,8 +91,8 @@ class PetImagemPrincipal extends StatelessWidget {
               child: Container(
                 width: 44,
                 height: 44,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                decoration: BoxDecoration(
+                  color: cores.surfaceContainer,
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(

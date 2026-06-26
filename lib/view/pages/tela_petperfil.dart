@@ -1,5 +1,7 @@
+import 'package:adota_pets_mobile/view/modelo/controller/favoritos_controller.dart';
 import 'package:adota_pets_mobile/view/modelo/modelo_pet.dart';
 import 'package:adota_pets_mobile/view/pages/tela_chat.dart';
+import 'package:adota_pets_mobile/view/services/chat_services.dart';
 import 'package:adota_pets_mobile/view/widgets/botao_adotar.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_atributos.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_imagem_principal.dart';
@@ -7,6 +9,7 @@ import 'package:adota_pets_mobile/view/widgets/pet_saude_card.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_sobre_card.dart';
 import 'package:adota_pets_mobile/view/widgets/publicado_por.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TelaPerfil extends StatefulWidget {
   final PetModel pet;
@@ -18,12 +21,18 @@ class TelaPerfil extends StatefulWidget {
 }
 
 class _TelaPerfilState extends State<TelaPerfil> {
-  bool _isFavorited = false;
-
   @override
   Widget build(BuildContext context) {
+    final favoritosController = Provider.of<FavoritosController>(context);
+    final cores = Theme.of(context).colorScheme;
+
+    final String idGerado = ChatService().obterChatId(
+      donoEmail: widget.pet.publicadoPorEmail,
+      petNome: widget.pet.nome,
+    );
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F7),
+      backgroundColor: cores.surface,
       body: SafeArea(
         child: Column(
           children: [
@@ -33,19 +42,19 @@ class _TelaPerfilState extends State<TelaPerfil> {
                 children: [
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
-                    child: const Row(
+                    child: Row(
                       children: [
                         Icon(
                           Icons.arrow_back_ios_new,
                           size: 16,
-                          color: Color(0xFF1A1A1A),
+                          color: cores.onSurface,
                         ),
                         SizedBox(width: 4),
                         Text(
                           'Voltar',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Color(0xFF1A1A1A),
+                            color: cores.onSurface,
                           ),
                         ),
                       ],
@@ -65,9 +74,9 @@ class _TelaPerfilState extends State<TelaPerfil> {
                       imageUrl: widget.pet.imageUrl,
                       petName: widget.pet.nome,
                       petSubtitle: widget.pet.petSubtitle,
-                      isFavorited: _isFavorited,
+                      isFavorited: favoritosController.isFavoritado(widget.pet),
                       onFavoriteTap: () {
-                        setState(() => _isFavorited = !_isFavorited);
+                        favoritosController.alternarFavorito(widget.pet);
                       },
                     ),
 
@@ -104,7 +113,7 @@ class _TelaPerfilState extends State<TelaPerfil> {
                     const SizedBox(height: 16),
 
                     PetPublicadoPorCard(
-                      tipo: widget.pet.publicadoPorTipo,
+                      nome: widget.pet.nome,
                       email: widget.pet.publicadoPorEmail,
                       avatarUrl: widget.pet.publicadoPorAvatarUrl,
                     ),
@@ -117,7 +126,8 @@ class _TelaPerfilState extends State<TelaPerfil> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TelaChat(pet: widget.pet),
+                            builder: (context) =>
+                                TelaChat(pet: widget.pet, chatId: idGerado),
                           ),
                         );
                       },

@@ -29,7 +29,7 @@ class _NavegacaoState extends State<Navegacao> {
       Feed(),
       const TelaFavoritos(),
       const TelaMeusPets(pets: []),
-      const TelaConversas(conversas: []),
+      const TelaConversas(),
       const TelaPerfilPessoa(),
       const TelaConfiguracoes(),
     ];

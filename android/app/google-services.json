@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "903444119343",
+    "project_id": "adotapets-dd47c",
+    "storage_bucket": "adotapets-dd47c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903444119343:android:d6c10e63d2c8303b52abda",
+        "android_client_info": {
+          "package_name": "com.example.adota_pets_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvW7UY4NlbtzygKbvmzo3q0mH0tWQArPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

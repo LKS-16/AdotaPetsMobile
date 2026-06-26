@@ -1,3 +1,5 @@
+import 'package:adota_pets_mobile/view/pages/tela_login.dart';
+import 'package:adota_pets_mobile/view/services/auth_user_service.dart';
 import 'package:adota_pets_mobile/view/widgets/botao_sair.dart';
 import 'package:adota_pets_mobile/view/widgets/perfil_cabe%C3%A7alho.dart';
 import 'package:adota_pets_mobile/view/widgets/perfil_estaticas.dart';
@@ -8,6 +10,14 @@ class TelaPerfilPessoa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthUserService authUserService = AuthUserService();
+    final usuario = authUserService.usuarioAtual;
+    final String nome = usuario?.displayName ?? 'Usuário';
+    final String email = usuario?.email ?? 'E-mail não encontrado';
+    final String anoCriacao = usuario?.metadata.creationTime != null
+        ? "${usuario!.metadata.creationTime!.year}"
+        : '2026';
+
     return Scaffold(
       backgroundColor: const Color(0xFFF7F2EE),
       body: SafeArea(
@@ -38,12 +48,12 @@ class TelaPerfilPessoa extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     PerfilCabecalho(
-                      nome: 'Lukas Araujo',
-                      email: 'araujolukas093@gmail.com',
-                      membroDesde: 'June de 2026',
+                      nome: nome,
+                      email: email,
+                      membroDesde: anoCriacao,
                     ),
 
-                    PerfilEstatisticas(favoritos: 2, pedidos: 0),
+                    PerfilEstatisticas(favoritos: 0, pedidos: 0),
 
                     const SizedBox(height: 16),
 
@@ -51,7 +61,19 @@ class TelaPerfilPessoa extends StatelessWidget {
 
                     const SizedBox(height: 16),
 
-                    PerfilBotaoSair(onSair: () {}),
+                    PerfilBotaoSair(
+                      onSair: () async {
+                        await authUserService.deslogar();
+                        if (context.mounted) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const TelaLogin(),
+                            ),
+                          );
+                        }
+                      },
+                    ),
 
                     const SizedBox(height: 20),
                   ],

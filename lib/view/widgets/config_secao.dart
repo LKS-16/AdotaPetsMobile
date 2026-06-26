@@ -12,11 +12,13 @@ class ConfiguracaoSecao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cores.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: cores.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,10 +27,10 @@ class ConfiguracaoSecao extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
             child: Text(
               titulo.toUpperCase(),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 11,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF888888),
+                color: cores.onSurfaceVariant,
                 letterSpacing: 1.2,
               ),
             ),
@@ -39,11 +41,11 @@ class ConfiguracaoSecao extends StatelessWidget {
               children: [
                 itens[index],
                 if (index < itens.length - 1)
-                  const Divider(
+                  Divider(
                     height: 1,
                     indent: 66,
                     endIndent: 16,
-                    color: Color(0xFFF0F0F0),
+                    color: cores.outlineVariant,
                   ),
               ],
             );
