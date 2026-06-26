@@ -7,6 +7,8 @@ class PerfilBotaoSair extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: GestureDetector(
@@ -15,21 +17,21 @@ class PerfilBotaoSair extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFEEEEEE)),
+            border: Border.all(color: cores.onSurface.withOpacity(0.12)),
           ),
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.logout_outlined, size: 18, color: Color(0xFF1A1A1A)),
+              Icon(Icons.logout_outlined, size: 18, color: cores.onSurface),
               SizedBox(width: 8),
               Text(
                 'Sair',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF1A1A1A),
+                  color: cores.onSurface,
                 ),
               ),
             ],

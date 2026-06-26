@@ -17,13 +17,15 @@ class CardMeuPet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: cores.surfaceContainerLow,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xFFEEEEEE)),
+          border: Border.all(color: cores.onSurface.withOpacity(0.08)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,10 +40,10 @@ class CardMeuPet extends StatelessWidget {
                   pet.imageUrl,
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => Container(
-                    color: const Color(0xFFF5F0EB),
-                    child: const Icon(
+                    color: cores.surfaceContainerHighest,
+                    child: Icon(
                       Icons.pets,
-                      color: Color(0xFFBBBBBB),
+                      color: cores.onSurfaceVariant,
                       size: 40,
                     ),
                   ),
@@ -59,18 +61,18 @@ class CardMeuPet extends StatelessWidget {
                     children: [
                       Text(
                         pet.nome,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF1A1A1A),
+                          color: cores.onSurface,
                         ),
                       ),
                       GestureDetector(
                         onTap: () => _mostrarOpcoes(context),
-                        child: const Icon(
+                        child: Icon(
                           Icons.more_horiz,
                           size: 20,
-                          color: Color(0xFF888888),
+                          color: cores.onSurfaceVariant,
                         ),
                       ),
                     ],
@@ -78,9 +80,9 @@ class CardMeuPet extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     pet.petSubtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
-                      color: Color(0xFF888888),
+                      color: cores.onSurfaceVariant,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -102,9 +104,11 @@ class CardMeuPet extends StatelessWidget {
   }
 
   void _mostrarOpcoes(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.white,
+      backgroundColor: cores.surfaceContainerLow,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -117,23 +121,27 @@ class CardMeuPet extends StatelessWidget {
               width: 40,
               height: 4,
               decoration: BoxDecoration(
-                color: const Color(0xFFDDDDDD),
+                color: cores.onSurfaceVariant.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
             const SizedBox(height: 16),
             ListTile(
-              leading: const Icon(
-                Icons.edit_outlined,
-                color: Color(0xFF1A1A1A),
+              leading: Icon(Icons.edit_outlined, color: cores.onSurface),
+              title: Text(
+                'Editar pet',
+                style: TextStyle(color: cores.onSurface),
               ),
-              title: const Text('Editar pet'),
               onTap: () {
                 Navigator.pop(context);
                 onEditar?.call();
               },
             ),
-            const Divider(height: 1, indent: 16, color: Color(0xFFF0F0F0)),
+            Divider(
+              height: 1,
+              indent: 16,
+              color: cores.onSurface.withOpacity(0.08),
+            ),
             ListTile(
               leading: const Icon(
                 Icons.delete_outline,
@@ -163,17 +171,19 @@ class _Chip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: const Color(0xFFF5F0EB),
+        color: cores.primary.withOpacity(0.08),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 11,
-          color: Color(0xFFE8622A),
+          color: cores.primary,
           fontWeight: FontWeight.w500,
         ),
       ),

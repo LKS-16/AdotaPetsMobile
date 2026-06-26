@@ -56,6 +56,42 @@ class PetService {
     }
   }
 
+  Stream<List<PetModel>> buscarMeusPetsStream() {
+    final String? meuEmail = _auth.currentUser?.email;
+
+    if (meuEmail == null) return const Stream.empty();
+
+    return _firestore
+        .collection('pets')
+        .where('publicadoPorEmail', isEqualTo: meuEmail)
+        .snapshots()
+        .map((snapshot) {
+          return snapshot.docs.map((doc) {
+            final data = doc.data();
+            return PetModel(
+              nome: data['nome'] ?? '',
+              especie: data['especie'] ?? '',
+              raca: data['raca'] ?? '',
+              idade: data['idade'] ?? '',
+              localizacao: data['localizacao'] ?? '',
+              imageUrl: data['fotoUrl'] ?? data['imageUrl'] ?? '',
+              temperamentos: List<String>.from(data['temperamentos'] ?? []),
+              porte: data['porte'] ?? '',
+              sexo: data['sexo'] ?? '',
+              descricao: data['descricao'] ?? '',
+              vacinado: data['vacinado'] ?? false,
+              castrado: data['castrado'] ?? false,
+              publicadoPorTipo:
+                  data['publicadoPorNome'] ??
+                  data['publicadoPorTipo'] ??
+                  "PESSOA",
+              publicadoPorEmail: data['publicadoPorEmail'] ?? '',
+              publicadoPorAvatarUrl: null,
+            );
+          }).toList();
+        });
+  }
+
   Stream<List<PetModel>> buscarPetsStream() {
     return _firestore
         .collection('pets')

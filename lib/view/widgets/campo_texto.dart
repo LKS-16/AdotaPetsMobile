@@ -16,20 +16,25 @@ class CampoTexto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: cores.surfaceContainerLow,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE0D9D1)),
+        border: Border.all(color: cores.onSurface.withOpacity(0.12)),
       ),
       child: TextField(
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
-        style: const TextStyle(fontSize: 14, color: Color(0xFF1A1A1A)),
+        style: TextStyle(fontSize: 14, color: cores.onSurface),
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: const TextStyle(fontSize: 14, color: Color(0xFFBBB3AA)),
+          hintStyle: TextStyle(
+            fontSize: 14,
+            color: cores.onSurfaceVariant.withOpacity(0.6),
+          ),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 16,

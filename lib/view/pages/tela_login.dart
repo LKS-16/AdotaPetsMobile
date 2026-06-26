@@ -61,7 +61,7 @@ class _TelaLoginState extends State<TelaLogin> {
 
   @override
   Widget build(BuildContext context) {
-    // final cores = Theme.of(context).colorScheme;
+    final cores = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -76,14 +76,14 @@ class _TelaLoginState extends State<TelaLogin> {
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A1A),
+                  color: cores.onSurface,
                 ),
               ),
 
               const SizedBox(height: 6),
               Text(
                 "Entre para continuar adotando pets!",
-                style: TextStyle(fontSize: 14, color: Color(0xFF888888)),
+                style: TextStyle(fontSize: 14, color: cores.onSurfaceVariant),
               ),
 
               const SizedBox(height: 26),
@@ -117,11 +117,15 @@ class _TelaLoginState extends State<TelaLogin> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
+                    Text(
                       "Não tem conta?",
-                      style: TextStyle(fontSize: 13, color: Color(0xFF888888)),
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: cores.onSurfaceVariant,
+                      ),
                     ),
 
+                    const SizedBox(width: 4),
                     GestureDetector(
                       onTap: () => Navigator.push(
                         context,

@@ -33,27 +33,29 @@ class _EstatisticaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
-          color: const Color(0xFFF5F0EB),
+          color: cores.surfaceContainerHighest.withOpacity(0.5),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
           children: [
             Text(
               '$valor',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFE8622A),
+                color: cores.primary,
               ),
             ),
             const SizedBox(height: 4),
             Text(
               label,
-              style: const TextStyle(fontSize: 12, color: Color(0xFF888888)),
+              style: TextStyle(fontSize: 12, color: cores.onSurfaceVariant),
             ),
           ],
         ),

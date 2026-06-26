@@ -1,9 +1,6 @@
-
-
 import 'package:adota_pets_mobile/view/pages/tela_cadastro.dart';
 import 'package:adota_pets_mobile/view/pages/tela_login.dart';
 import 'package:adota_pets_mobile/view/widgets/aba.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AbasAuth extends StatelessWidget {
@@ -20,16 +17,32 @@ class AbasAuth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Container(
       height: 48,
       decoration: BoxDecoration(
-        color: const Color(0xFFEAE4DD),
+        color: cores.surfaceContainerHigh,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         children: [
-          Aba(label: 'Entrar', isActive: isLogin, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TelaLogin()))),
-          Aba(label: 'Cadastrar', isActive: !isLogin, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TelaCadastro()))),
+          Aba(
+            label: 'Entrar',
+            isActive: isLogin,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const TelaLogin()),
+            ),
+          ),
+          Aba(
+            label: 'Cadastrar',
+            isActive: !isLogin,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const TelaCadastro()),
+            ),
+          ),
         ],
       ),
     );

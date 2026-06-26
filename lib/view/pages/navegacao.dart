@@ -28,7 +28,7 @@ class _NavegacaoState extends State<Navegacao> {
     final List<Widget> _telas = [
       Feed(),
       const TelaFavoritos(),
-      const TelaMeusPets(pets: []),
+      const TelaMeusPets(),
       const TelaConversas(),
       const TelaPerfilPessoa(),
       const TelaConfiguracoes(),

@@ -16,6 +16,8 @@ class PerfilCabecalho extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,10 +26,15 @@ class PerfilCabecalho extends StatelessWidget {
           children: [
             Container(
               height: 100,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(16),
+                ),
                 gradient: LinearGradient(
-                  colors: [Color(0xFFFDE8D8), Color(0xFFFFF3EC)],
+                  colors: [
+                    cores.primary.withOpacity(0.15),
+                    cores.primary.withOpacity(0.04),
+                  ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -51,7 +58,7 @@ class PerfilCabecalho extends StatelessWidget {
                       width: 64,
                       height: 64,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE8622A),
+                        color: cores.primary,
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: Center(
@@ -75,10 +82,10 @@ class PerfilCabecalho extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             nome,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Color(0xFF1A1A1A),
+              color: cores.onSurface,
             ),
           ),
         ),
@@ -89,15 +96,15 @@ class PerfilCabecalho extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.email_outlined,
                 size: 14,
-                color: Color(0xFF888888),
+                color: cores.onSurfaceVariant,
               ),
               const SizedBox(width: 6),
               Text(
                 email,
-                style: const TextStyle(fontSize: 13, color: Color(0xFF888888)),
+                style: TextStyle(fontSize: 13, color: cores.onSurfaceVariant),
               ),
             ],
           ),
@@ -109,15 +116,15 @@ class PerfilCabecalho extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.calendar_today_outlined,
                 size: 14,
-                color: Color(0xFF888888),
+                color: cores.onSurfaceVariant,
               ),
               const SizedBox(width: 6),
               Text(
                 'Membro desde $membroDesde',
-                style: const TextStyle(fontSize: 13, color: Color(0xFF888888)),
+                style: TextStyle(fontSize: 13, color: cores.onSurfaceVariant),
               ),
             ],
           ),

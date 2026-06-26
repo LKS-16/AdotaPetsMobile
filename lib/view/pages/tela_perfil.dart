@@ -18,20 +18,22 @@ class TelaPerfilPessoa extends StatelessWidget {
         ? "${usuario!.metadata.creationTime!.year}"
         : '2026';
 
+    final cores = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F2EE),
+      backgroundColor: cores.surface,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Perfil',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A1A),
+                  color: cores.onSurface,
                 ),
               ),
 
@@ -40,9 +42,9 @@ class TelaPerfilPessoa extends StatelessWidget {
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: cores.surfaceContainerLow,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: const Color(0xFFEEEEEE)),
+                  border: Border.all(color: cores.onSurface.withOpacity(0.08)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,11 +55,14 @@ class TelaPerfilPessoa extends StatelessWidget {
                       membroDesde: anoCriacao,
                     ),
 
-                    PerfilEstatisticas(favoritos: 0, pedidos: 0),
+                    const PerfilEstatisticas(favoritos: 0, pedidos: 0),
 
                     const SizedBox(height: 16),
 
-                    const Divider(height: 1, color: Color(0xFFF0F0F0)),
+                    Divider(
+                      height: 1,
+                      color: cores.onSurface.withOpacity(0.08),
+                    ),
 
                     const SizedBox(height: 16),
 

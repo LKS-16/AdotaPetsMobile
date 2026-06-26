@@ -10,14 +10,17 @@ class CardConversa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final temNaoLidas = conversa.mensagensNaoLidas > 0;
+    final cores = Theme.of(context).colorScheme;
 
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(bottom: BorderSide(color: Color(0xFFF0F0F0))),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border(
+            bottom: BorderSide(color: cores.onSurface.withOpacity(0.08)),
+          ),
         ),
         child: Row(
           children: [
@@ -32,10 +35,10 @@ class CardConversa extends StatelessWidget {
                 errorBuilder: (_, __, ___) => Container(
                   width: 54,
                   height: 54,
-                  color: const Color(0xFFF5F0EB),
-                  child: const Icon(
+                  color: cores.primary.withOpacity(0.08),
+                  child: Icon(
                     Icons.pets,
-                    color: Color(0xFFBBBBBB),
+                    color: cores.primary.withOpacity(0.5),
                     size: 26,
                   ),
                 ),
@@ -60,7 +63,7 @@ class CardConversa extends StatelessWidget {
                           fontWeight: temNaoLidas
                               ? FontWeight.bold
                               : FontWeight.w600,
-                          color: const Color(0xFF1A1A1A),
+                          color: cores.onSurface,
                         ),
                       ),
                       Text(
@@ -69,7 +72,7 @@ class CardConversa extends StatelessWidget {
                           fontSize: 12,
                           color: temNaoLidas
                               ? const Color(0xFFE8622A)
-                              : const Color(0xFF999999),
+                              : cores.onSurfaceVariant.withOpacity(0.7),
                           fontWeight: temNaoLidas
                               ? FontWeight.w600
                               : FontWeight.normal,
@@ -90,9 +93,9 @@ class CardConversa extends StatelessWidget {
                           children: [
                             Text(
                               conversa.contatoNome,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
-                                color: Color(0xFF888888),
+                                color: cores.onSurfaceVariant,
                               ),
                             ),
                             const SizedBox(height: 2),
@@ -103,8 +106,8 @@ class CardConversa extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 13,
                                 color: temNaoLidas
-                                    ? const Color(0xFF1A1A1A)
-                                    : const Color(0xFF888888),
+                                    ? cores.onSurface
+                                    : cores.onSurfaceVariant,
                                 fontWeight: temNaoLidas
                                     ? FontWeight.w500
                                     : FontWeight.normal,

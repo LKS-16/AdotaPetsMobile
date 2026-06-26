@@ -8,6 +8,7 @@ import 'package:adota_pets_mobile/view/widgets/pet_imagem_principal.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_saude_card.dart';
 import 'package:adota_pets_mobile/view/widgets/pet_sobre_card.dart';
 import 'package:adota_pets_mobile/view/widgets/publicado_por.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,8 @@ class _TelaPerfilState extends State<TelaPerfil> {
   Widget build(BuildContext context) {
     final favoritosController = Provider.of<FavoritosController>(context);
     final cores = Theme.of(context).colorScheme;
+    final String? meuEmail = FirebaseAuth.instance.currentUser?.email;
+    final bool souODonoDoPet = widget.pet.publicadoPorEmail == meuEmail;
 
     final String idGerado = ChatService().obterChatId(
       donoEmail: widget.pet.publicadoPorEmail,
@@ -120,18 +123,53 @@ class _TelaPerfilState extends State<TelaPerfil> {
 
                     const SizedBox(height: 24),
 
-                    BotaoAdotar(
-                      petName: widget.pet.nome,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                TelaChat(pet: widget.pet, chatId: idGerado),
+                    souODonoDoPet
+                        ? Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: cores.surfaceContainerHighest.withOpacity(
+                                0.4,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: cores.onSurfaceVariant.withOpacity(0.2),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.info_outline,
+                                  color: cores.onSurfaceVariant,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Este pet foi cadastrado por você.',
+                                  style: TextStyle(
+                                    color: cores.onSurfaceVariant,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : BotaoAdotar(
+                            petName: widget.pet.nome,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TelaChat(
+                                    pet: widget.pet,
+                                    chatId: idGerado,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
 
                     const SizedBox(height: 32),
                   ],

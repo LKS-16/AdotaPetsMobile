@@ -16,7 +16,6 @@ class TelaConversas extends StatefulWidget {
 }
 
 class _TelaConversasState extends State<TelaConversas> {
-  // Instancia o serviço e cria a variável que vai guardar o fluxo de dados fixo
   final ChatService _chatService = ChatService();
   late Stream<QuerySnapshot> _conversasStream;
   final String? _meuEmail = FirebaseAuth.instance.currentUser?.email;
@@ -24,18 +23,18 @@ class _TelaConversasState extends State<TelaConversas> {
   @override
   void initState() {
     super.initState();
-    // Inicializa o Stream aqui. Ele fica travado na memória e não reseta se a tela atualizar
     _conversasStream = _chatService.listarMeusChats();
   }
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F2EE),
+      backgroundColor: cores.surface,
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
-          stream:
-              _conversasStream, // Passa o fluxo persistente criado no initState
+          stream: _conversasStream,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -46,7 +45,7 @@ class _TelaConversasState extends State<TelaConversas> {
             final docs = snapshot.data?.docs ?? [];
 
             if (docs.isEmpty) {
-              return const Column(
+              return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -56,6 +55,7 @@ class _TelaConversasState extends State<TelaConversas> {
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
+                        color: cores.onSurface,
                       ),
                     ),
                   ),
@@ -72,12 +72,12 @@ class _TelaConversasState extends State<TelaConversas> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Conversas',
+                      Text(
+                        'Suas conversas',
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF1A1A1A),
+                          color: cores.onSurface,
                         ),
                       ),
                       Container(
@@ -103,8 +103,8 @@ class _TelaConversasState extends State<TelaConversas> {
                 ),
                 Expanded(
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: cores.surfaceContainerLow,
                       borderRadius: BorderRadius.vertical(
                         top: Radius.circular(24),
                       ),
@@ -119,7 +119,6 @@ class _TelaConversasState extends State<TelaConversas> {
                           final dados =
                               docs[index].data() as Map<String, dynamic>;
 
-                          // Descobre quem é a outra pessoa para colocar o nome correto no cabeçalho do card
                           final String nomeExibir =
                               dados['adotanteEmail'] == _meuEmail
                               ? dados['donoNome']
