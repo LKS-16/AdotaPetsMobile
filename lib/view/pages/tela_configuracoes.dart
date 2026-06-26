@@ -21,6 +21,7 @@ class _TelaConfiguracoesState extends State<TelaConfiguracoes> {
   @override
   Widget build(BuildContext context) {
     final themeController = Provider.of<ThemeController>(context);
+    final cores = Theme.of(context).colorScheme;
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -30,18 +31,18 @@ class _TelaConfiguracoesState extends State<TelaConfiguracoes> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Configurações',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A1A1A),
+                  color: cores.onSurface,
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
+              Text(
                 'Gerencie suas preferências',
-                style: TextStyle(fontSize: 14, color: Color(0xFF888888)),
+                style: TextStyle(fontSize: 14, color: cores.onSurfaceVariant),
               ),
 
               const SizedBox(height: 32),

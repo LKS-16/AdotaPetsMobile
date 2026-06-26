@@ -19,6 +19,7 @@ class _FiltroAnimaisState extends State<FiltroAnimais> {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
     return SizedBox(
       height: 45,
       child: ListView.builder(
@@ -32,10 +33,12 @@ class _FiltroAnimaisState extends State<FiltroAnimais> {
               margin: const EdgeInsets.only(right: 12),
               padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(
-                color: isSelected ? const Color(0xFFD35400) : Colors.white,
+                color: isSelected
+                    ? const Color(0xFFD35400)
+                    : cores.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(
-                  color: isSelected ? Colors.transparent : Colors.grey,
+                  color: isSelected ? Colors.transparent : cores.outlineVariant,
                 ),
               ),
               child: Row(
@@ -43,13 +46,15 @@ class _FiltroAnimaisState extends State<FiltroAnimais> {
                   Icon(
                     filtros[index]['icon'],
                     size: 18,
-                    color: isSelected ? Colors.white : Colors.grey[600],
+                    color: isSelected
+                        ? cores.onPrimary
+                        : cores.onSurfaceVariant,
                   ),
                   const SizedBox(width: 8),
                   Text(
                     filtros[index]['label'],
                     style: TextStyle(
-                      color: isSelected ? Colors.white : Colors.black,
+                      color: isSelected ? cores.onPrimary : cores.onSurface,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

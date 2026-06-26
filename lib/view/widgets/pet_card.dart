@@ -1,5 +1,6 @@
 import 'package:adota_pets_mobile/view/modelo/modelo_pet.dart';
 import 'package:adota_pets_mobile/view/pages/tela_petperfil.dart';
+import 'package:adota_pets_mobile/view/widgets/imagem_pet.dart';
 import 'package:flutter/material.dart';
 
 class PetCard extends StatelessWidget {
@@ -41,8 +42,9 @@ class PetCard extends StatelessWidget {
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
-              child: Image.network(
-                pet.imageUrl,
+
+              child: ImagemPet(
+                imageUrl: pet.imageUrl,
                 height: 200,
                 width: double.infinity,
                 fit: BoxFit.cover,

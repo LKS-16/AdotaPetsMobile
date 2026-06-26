@@ -1,4 +1,5 @@
 import 'package:adota_pets_mobile/view/modelo/modelo_pet.dart';
+import 'package:adota_pets_mobile/view/pages/botao_cadastrapet.dart';
 import 'package:adota_pets_mobile/view/pages/tela_petperfil.dart';
 import 'package:adota_pets_mobile/view/widgets/card_meu_pet.dart';
 import 'package:adota_pets_mobile/view/widgets/meus_pets_vazio.dart';
@@ -13,7 +14,7 @@ class TelaMeusPets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F2EE),
-      //floatingActionButton: const BotaoCadastrarPet(),
+      floatingActionButton: const BotaoCadastrarPet(),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

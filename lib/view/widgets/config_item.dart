@@ -18,6 +18,8 @@ class ConfiguracaoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cores = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
@@ -26,10 +28,10 @@ class ConfiguracaoItem extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: const Color(0xFFF5F0EB),
+              color: cores.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icone, size: 18, color: const Color(0xFF888888)),
+            child: Icon(icone, size: 18, color: cores.onSurfaceVariant),
           ),
           const SizedBox(width: 14),
 
@@ -39,19 +41,16 @@ class ConfiguracaoItem extends StatelessWidget {
               children: [
                 Text(
                   titulo,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF1A1A1A),
+                    color: cores.onSurface,
                   ),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   descricao,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFF888888),
-                  ),
+                  style: TextStyle(fontSize: 12, color: cores.onSurfaceVariant),
                 ),
               ],
             ),
@@ -63,7 +62,7 @@ class ConfiguracaoItem extends StatelessWidget {
             activeColor: Colors.white,
             activeTrackColor: const Color(0xFFE8622A),
             inactiveThumbColor: Colors.white,
-            inactiveTrackColor: const Color(0xFFDDDDDD),
+            inactiveTrackColor: cores.outlineVariant,
           ),
         ],
       ),
