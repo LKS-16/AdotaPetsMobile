@@ -1,3 +1,4 @@
+import 'package:adota_pets_mobile/view/pages/navega%C3%A7%C3%A3o_carregamento.dart';
 import 'package:adota_pets_mobile/view/pages/navegacao.dart';
 import 'package:adota_pets_mobile/view/pages/tela_cadastro.dart';
 import 'package:adota_pets_mobile/view/services/auth_service.dart';
@@ -44,10 +45,16 @@ class _TelaLoginState extends State<TelaLogin> {
       );
 
       if (!mounted) return;
-      Navigator.pushReplacement(
+      await navegarComCarregamento(
         context,
-        MaterialPageRoute(builder: (_) => const Navegacao()),
+        destino: const Navegacao(),
+        duracaoMs: 1200,
       );
+
+      //Navigator.pushReplacement(
+      //context,
+      //MaterialPageRoute(builder: (_) => const Navegacao()),
+      //);
     } catch (mensagemErro) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

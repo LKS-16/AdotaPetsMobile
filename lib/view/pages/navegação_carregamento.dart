@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Future<void> navegarComCarregamento(
   BuildContext context, {
   required Widget destino,
-  int duracaoMs = 800,
+  int duracaoMs = 1500,
 }) async {
   Navigator.push(
     context,
@@ -21,7 +21,7 @@ Future<void> navegarComCarregamento(
 
   if (!context.mounted) return;
 
-  Navigator.pushReplacement(
+  Navigator.pushAndRemoveUntil(
     context,
     PageRouteBuilder(
       pageBuilder: (_, __, ___) => destino,
@@ -30,5 +30,6 @@ Future<void> navegarComCarregamento(
       },
       transitionDuration: const Duration(milliseconds: 300),
     ),
+    (route) => false,
   );
 }

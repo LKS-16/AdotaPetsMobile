@@ -1,5 +1,3 @@
-import 'package:adota_pets_mobile/view/pages/feed.dart';
-import 'package:adota_pets_mobile/view/pages/navega%C3%A7%C3%A3o_carregamento.dart';
 import 'package:flutter/material.dart';
 
 class TelaCarregamento extends StatefulWidget {
@@ -32,10 +30,6 @@ class _TelaCarregamentoState extends State<TelaCarregamento>
       begin: 0.5,
       end: 1.0,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      navegarComCarregamento(context, destino: Feed(), duracaoMs: 1800);
-    });
   }
 
   @override
